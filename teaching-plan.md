@@ -1,0 +1,487 @@
+# 2026年春学期《数据驱动的可重复性研究》教学计划
+
+> 课程时间：2026年3月4日 - 2026年4月3日
+> 上课安排：每周三、周五晚上
+> 学时分配：前4次课每次2学时，后6次每次4学时，共32学时
+> 上课地点：三教阶梯教室 S1/S2
+
+---
+
+## 一、课程模块概览
+
+| 模块 | 学时 | 主要内容 |
+|:----:|:----:|:---------|
+| 课程简介 | 2 | 课程结构、往年作品、考核方式、基本概念 |
+| 环境搭建 | 6 | 可重复环境、Git版本控制、现代工具链、AI辅助编程 |
+| 数据分析 | 12 | 分组数据统计、转录组学、微生物组分析 |
+| 人工智能 | 12 | 大模型API调用、神经网络入门、深度学习基础 |
+| 项目开发 | 4 | Vibe Coding技术、项目实战、互评展示 |
+
+10 次课的主要内容：
+
+---
+
+## 二、详细课程安排
+
+### 第1次课：课程导论与往年作品赏析
+
+**教学内容**
+
+1. 课程简介
+  - 关于老师（@gaospecial）
+  - 课程目标
+  - 课程特色
+  - 课程组织形式（使用 GitHub Organization：<https://github.com/D2RS-2026spring>）
+  - 如何考察？
+  - 课程模块（内容）
+2. 往年作品赏析
+  - 【演示】访问 GitHub 组织，展示相关素材。
+3. 科学上网
+  * 使用代理访问外部网站（推荐：[tgfish.app](https://cdn.tgfish-go.com/?code=ua3ThXrE)）
+  * 使用镜像（后续再详细介绍）
+  * 使用 API 接口
+    * 什么是 API 接口？
+    * 使用工具程序【配置 API KEY + ChatBox】
+    * 获取阿里云百炼、智谱、月之暗面、火山引擎等提供的 API KEY【简单示范 + 附加材料】
+  * 访问 GitHub
+    * 注册账号（请使用自己常用的邮箱[注册账号](https://github.com/)，确保能收到系统邮件通知）
+    * 加入群组（在 [ISSUE 1](https://github.com/D2RS-2026spring/members/issues/1) 提交申请）
+    * 提交修改（【演示】Fork + New File + Pull Request)
+4. 科学记录（使用 Markdown）
+  * 介绍 Markdown 的用法（【演示】）
+  * LaTeX 公式编写基础
+
+**参考讲义**
+
+- `what-is-reproducible-study.qmd`
+- `project-introduction.qmd`
+- `markdown.qmd`
+- `write-math-equation.qmd`
+
+**课后作业**
+
+* [ ] 完成科学上网的配置
+* [ ] 加入 GitHub 群组（在 [ISSUE 1](https://github.com/D2RS-2026spring/members/issues/1) 提交申请）
+* [ ] 从 ChatAnyWhere 提供的模型中，选择 10 个不同的模型回答同一问题，比较一下模型回答的差异，根据你的感觉将模型排序（最佳的排在前面），结果提交到 [ISSUE 2](https://github.com/D2RS-2026spring/members/issues/2) 。
+* [ ] 注册并试用 [Google 的大模型](https://gemini.google.com/app?hl=zh)
+
+
+### 第2次课：数据、代码的保存和备份
+
+1. 文件系统（养成结构化的文件储存习惯）
+  * 路径（【强调】提倡全英文、有意义的路径名称）
+  * 格式（扩展名）
+  * 文件名（【强调】起有意义的文件名）
+  * 权限（【Linux/MacOS 系统】）
+2. 按项目组织
+  * 项目就是一个文件夹，有清晰的定义
+  * 要有这些文件：`README.md`，`data-raw/`，`data-processed/`，`scripts/`，`report/` 等（【示例】数据分析项目的项目规划）
+3. 版本控制（Git/GitHub 版本控制与协作）
+  - Git版本控制原理（分布式vs集中式）
+  - 仓库、分支、提交、合并概念
+  - GitHub协作模型（Fork/PR/Issue）
+  - GitHub Review机制（为平时互评打基础）
+4. 【演示】Git 的配置
+  - Git 认证（SSH配置）
+  - 基础Git命令（clone/add/commit/push/pull）
+  - Fork课程仓库
+  - 提交第一个Pull Request
+
+**参考讲义**
+
+- `git-basic.qmd`
+- `collaboration-with-global-developers.qmd`
+
+**课后作业**
+
+- [ ] 为自己的电脑文件规划一个存储和备份策略。
+- [ ] 提交一个PR到课程仓库：选择 5 个不同的模型回答同一问题，比较一下模型回答的差异，把结果保存在 `学号.md`（请修改为自己的学号）文件中，上传到自己的 Fork 上后，发起 [PR](https://github.com/D2RS-2026spring/members/pulls)。
+- [ ] 根据随机指派，审核 5 个同学的 PR，给出 1 个优，3 个良和 1 个合格。
+
+---
+
+### 第3次课：文学化编程与自然语言编程
+
+**理论部分（1学时）**
+
+- 文学化编程
+  - 【重点】Quarto 文档系统
+  - 【演示】代码块和执行
+- 自然语言编程（Vibe Coding）
+  - VSCode/Cursor/Positron 等（课程推荐 Positron 编辑器）
+  - AI 代码编辑器插件（Cline）【重点】
+  - Claude Code/Opencode 等（后续介绍）
+  - 如何高效使用 AI 助手学习编程
+
+**实践部分（1学时）**
+
+- Positron 的安装
+- Quarto 文档创建与渲染【重点】
+  - `quarto create`
+  - `quarto render`
+  - `quarto publish`
+- AI 编辑器配置（Claude Sonnet/Kimi 2.5 等接入）
+- 第一个 Quarto 网站/报告
+
+**参考讲义**
+
+- `quarto-cheatsheet.qmd`
+- `markdown.qmd`
+- `write-math-equation.qmd`
+
+**课后作业**
+
+- [ ] 使用 Quarto 技术创建一个自己的个人网站，渲染并发布（`publish`）到 GitHub Pages 上面，然后把链接提交到指定的 GitHub ISSUE 中去。
+
+---
+
+### 第4次课：可重复研究环境构建
+
+1. 环境为什么重要（以大模型为例）？
+  * 大语言模型为什么像人一样？
+    * All your need is attention！（【强调】Attention）
+    * 基本逻辑：根据前面的内容补全后续的内容。
+    * 再加上架构创新、训练技术等，得到一个更大更聪明的模型。
+  * 模型上下文（CONTEXT）
+    * 提示词（【演示】同一模型不同提示词结果比较）
+2. 使用 Linux/MacOS：Windows 需要安装 Linux 子系统【实战】
+  * 使用命令行（cli）：Shell/R/Python
+    * 自动补齐
+    * 帮助系统
+  * 绝对路径、相对路径
+  * 读写及执行权限
+
+
+**理论部分（1学时）**
+
+- 可重复性研究环境概述
+- 硬件架构（x86/ARM）与操作系统选择
+- R和Python的包管理系统（renv vs uv）
+- 国内镜像源配置（USTC/TUNA）
+
+**实践部分（1学时）**
+
+- R + Positron/RStudio安装与配置
+- uv安装与environment.yml使用
+- renv.restore()实战
+- 常见问题排查
+
+**参考讲义**
+
+- `reproducible-data-analysis-environment.qmd`
+- `setup-a-reproducible-environment.qmd`
+
+---
+
+### 第5次课：分组数据统计分析实战
+
+**理论部分（2学时）**
+
+- ggplot2图形语法
+- 统计分析体系：参数vs非参数方法
+  - 单样本/双样本t检验
+  - 方差分析（ANOVA）
+  - 配对设计与非配对设计
+  - 相关分析（Pearson vs Spearman）
+- 多重比较校正
+
+**实践部分（2学时）**
+
+- ToothGrowth数据集分析实战
+- ggpubr包应用（分组比较可视化）
+- 正态性检验与方差齐性检验
+- 课堂练习：完成一份完整的数据分析报告
+
+**参考讲义**
+
+- `grouped-data-analysis.qmd`
+- `grouped-data-analysis-in-action.qmd`
+- `ggplot2-cheatsheet.qmd`
+- `dplyr-cheatsheet.qmd`
+
+**参考课件**
+
+- `slides/lecture3-grouped-data-analysis.qmd`
+
+**课后作业**
+
+- 使用自己的数据或示例数据完成一份分组统计分析报告
+- 提交到个人GitHub仓库
+
+---
+
+### 第6次课：转录组学数据分析
+
+**理论部分（2学时）**
+
+- RNA-seq技术原理与实验流程
+- 差异表达分析原理（DESeq2算法简介）
+- 功能富集分析（KEGG/GO）
+- GSEA分析原理
+
+**实践部分（2学时）**
+
+- DESeq2完整分析流程
+- ClusterProfiler富集分析
+- PCA、火山图、热图绘制
+- 复现2021年ISME Communications论文分析
+
+**参考讲义**
+
+- `transcriptomics-data-analysis-and-visualization.qmd`
+- `transcriptomics-data-analysis-in-action.qmd`
+
+**参考课件**
+
+- `slides/lecture4-RNA-seq.qmd`
+
+**课后作业**
+
+- 完成转录组数据分析练习
+- 准备微生物组分析的问题
+
+---
+
+### 第7次课：微生物组数据分析
+
+**理论部分（2学时）**
+
+- 微生物组测序技术（16S/ITS）
+- DADA2去噪与ASV构建原理
+- phyloseq数据结构
+- microeco可视化方法
+- 菌群多样性分析（Alpha/Beta多样性）
+
+**实践部分（2学时）**
+
+- DADA2完整分析流程（从fastq到ASV表）
+- phyloseq菌群多样性分析
+- microeco高级可视化
+- LEfSe差异菌群分析
+
+**参考讲义**
+
+- `microbiome-data-analysis-and-visualization.qmd`
+
+**数据资源**
+
+- dada2包示例数据
+- 课程data目录下的微生物组数据集
+
+---
+
+### 第8次课：大模型API调用与文献批量处理
+
+**理论部分（2学时）**
+
+- 大语言模型发展历程（GPT→DeepSeek）
+- API调用基础（OpenAI兼容接口）
+- 提示词工程基础
+- 批量处理策略设计
+
+**实践部分（2学时）**
+
+- 阿里云百炼平台API Key申请
+- ChatBox配置与使用
+- Python + OpenAI库批量读文献
+- Quarto自动化生成文献综述网页
+
+**参考讲义**
+
+- `how-to-get-api-key.qmd`
+- `reading-paper.qmd`
+- `bailian.qmd`
+- `deepseek.qmd`
+- `chatanywhere.qmd`
+
+**参考课件**
+
+- `slides/lecture5-llm-model.qmd`
+
+**课后作业**
+
+- 配置好个人的大模型API调用环境
+- 使用AI工具解读1-2篇相关领域文献
+
+---
+
+### 第9次课：神经网络与深度学习入门
+
+**理论部分（2学时）**
+
+- 神经网络基础（感知机、多层感知机）
+- 卷积神经网络（CNN）原理
+- PyTorch框架介绍
+- 训练/验证/测试集划分
+- 损失函数与优化器
+
+**实践部分（2学时）**
+
+- LeNet模型从零搭建
+- MNIST手写数字识别实战
+- 模型训练与评估
+- 混淆矩阵与性能指标
+
+**参考讲义**
+
+- `neural-network-from-scratch.qmd`
+- `two-dimensional-classification.qmd`
+- `machine-learning-algorithms-and-implementation.qmd`
+
+**参考课件**
+
+- `slides/lecture6-cnn-beginner.qmd`
+
+**扩展资源**
+
+- `pathogen-identification-with-raman-spectroscopy.qmd`（拉曼光谱+ResNet，可选方向）
+- `computer-vision-image-analysis.qmd`（计算机视觉，可选方向）
+
+**课后作业**
+
+- 完成LeNet模型训练并提交代码
+- 思考最终项目选题方向
+
+---
+
+### 第10次课：Vibe Coding项目实战与展示
+
+**理论部分（1学时）**
+
+- Vibe Coding理念介绍（AI辅助项目开发）
+- 项目选题指导：
+  - 数据分析类（转录组/微生物组/影像数据分析）
+  - 软件工具类（R包/Python工具）
+  - 论文复现类（拉曼光谱病原菌识别/计算机视觉）
+  - AI应用类（智能文献助手/自动化流程）
+- 项目开发最佳实践
+- 互评机制说明与演示
+
+**实践部分（3学时）**
+
+- 项目选题讨论与确定（小组汇报）
+- 已有项目开发展示（如有）
+- GitHub Review互评演练
+- 课程总结与后续学习资源
+
+**参考讲义**
+
+- `r-package-development.qmd`
+
+**参考课件**
+
+- `slides/lecture8-using-github.qmd`
+- `slides/lecture9-r-package.qmd`
+
+---
+
+## 三、考核方案
+
+### 成绩构成
+
+| 考核项目 | 占比 | 说明 |
+|:----:|:----:|:----|
+| 平时成绩 | 40% | 根据作业完成情况打分 |
+| 项目实践 | 60% | 3-5人一组完成项目 |
+
+
+### GitHub互评机制
+
+1. **提交方式**：每次作业/项目提交通过Pull Request进行
+2. **Review要求**：每名学生需Review至少2个其他组的PR
+3. **评分标准**：
+   - Review质量（评论深度、建设性）
+   - 是否指出代码问题或提出改进建议
+   - 是否及时完成Review
+4. **监督机制**：老师抽查Review质量，对敷衍的Review进行扣分
+
+### 项目要求
+
+**基本规范**：
+- 类型：数据分析、软件工具、论文复现、AI应用等
+- 提交：GitHub仓库（代码+文档+README）
+- 协作：使用Git进行版本控制，每位成员需有明确贡献
+- 文档：使用Quarto编写项目报告
+
+**时间节点**：
+- 第10次课：确定选题
+- 课程结束后1周内：提交最终项目
+- 视情况：现场演示与答辩
+
+**评价标准**：
+- 技术难度（30%）
+- 完成度（30%）
+- 创新性（20%）
+- 文档质量（20%）
+
+---
+
+## 四、课程资源
+
+### 必备软件
+
+- **R** (>= 4.4.0) + RStudio
+- **Python** (3.10) + uv
+- **Git** + GitHub账号
+- **Positron** + 相关插件
+- **Chatbox**
+
+### 主要R包
+
+```r
+# 数据处理与可视化
+tidyverse, ggplot2, ggpubr, dplyr
+
+# 转录组分析
+DESeq2, clusterProfiler, enrichplot
+
+# 微生物组分析
+dada2, phyloseq, microeco
+
+# 其他工具
+devtools, usethis, quarto, knitr
+```
+
+### 主要Python包
+
+```python
+# 数据处理
+pandas, numpy
+
+# 深度学习
+pytorch, torchvision
+
+# API调用
+openai, requests
+
+# 可视化
+matplotlib, seaborn
+```
+
+### 参考资源
+
+- 课程讲义：https://d2rs.bio-spring.top
+- GitHub组织：https://github.com/D2RS-2025spring
+- 课程仓库：https://github.com/D2RS-2025spring/data-driven-reproducible-study
+
+---
+
+## 五、备注与待办
+
+### 需要准备的材料
+
+- [ ] 更新slides/lecture1-intro.qmd中的日期信息
+- [ ] 准备2025年优秀结课作品案例
+- [ ] 完善微生物组数据分析讲义（DADA2/phyloseq/microeco）
+- [ ] 准备GitHub Review互评操作指南
+- [ ] 更新课程组织的仓库权限和结构
+
+### 可能的调整
+
+- 根据学生反馈调整各模块的时间分配
+- 根据技术发展更新AI工具相关内容
+- 视情况增加线上答疑或Office Hour
+
+---
+
+*本教学计划草案制定于2026年3月，可根据实际情况进行调整。*

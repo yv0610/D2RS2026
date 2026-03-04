@@ -12,13 +12,13 @@ format:
     preview-links: auto
     css: slide.css
     footer: '[课程仓库](https://github.com/D2RS-2026spring)'
-  pptx:
-    reference-doc: template.pptx
+  pdf:
+    documentclass: ctexbook
 ---
 
 # 课程回顾
 
-## 上节课主要内容
+## 上节课主要内容 {.smaller}
 
 1. **课程简介** —— 目标、模块、考核方式
 2. **往年作品** —— 应用程序、文献复现、网站
@@ -30,7 +30,7 @@ format:
 
 - [ ] 加入GitHub组织（ISSUE #1）
 - [ ] 模型比较作业（ISSUE #2）
-- [ ] 注册 Google Gemini
+- [ ] 试用 Google Gemini
 :::
 
 ---
@@ -40,9 +40,9 @@ format:
 ## 为什么文件管理很重要？
 
 ::: {.callout-note}
-**可重复性研究的第一原则**：
+### 可重复性研究的第一原则
 
-> 你的代码现在能运行，6 个月后还能运行吗？换一台电脑还能运行吗？
+你的代码现在能运行，6 个月后还能运行吗？换一台电脑还能运行吗？
 :::
 
 **常见问题：**
@@ -58,17 +58,16 @@ format:
 
 **绝对路径 vs 相对路径**
 
-```
-绝对路径：/Users/username/Documents/project/data.csv
-相对路径：./data.csv  或  data/data.csv
-```
+* 关键符号：`/`，`~`，`.`，`..`
+* 绝对路径：`/Users/username/Documents/project/data.csv`
+* 相对路径：`./data.csv`  或  `data/data.csv` 或 `../data`
 
 ::: {.callout-warning}
-**【重要】路径命名规范**
+### 【重要】路径命名规范
 
 - 使用**全英文**命名
 - 使用**有意义的名称**
-- 避免空格（用`-`或`_`代替）
+- 避免空格（用 `-` 或 `_` 代替）
 - 区分大小写（Linux/Mac）
 :::
 
@@ -76,23 +75,23 @@ format:
 
 ### 不好的路径示例
 
-```
-❌ /Users/小明/我的数据/2024年数据/final_v2(改).csv
-❌ /Users/John/Desktop/New Folder (2)/data.txt
-❌ C:\Users\用户\文档\实验数据\最终版\真的最终版\...
+```markdown
+❌ `/Users/小明/我的数据/2024年数据/final_v2(改).csv`
+❌ `/Users/John/Desktop/New Folder (2)/data.txt`
+❌ `C:\Users\用户\文档\实验数据\最终版\真的最终版\...`
 ```
 
 ### 好的路径示例
 
-```
-✅ /Users/gaoch/projects/d2rs-2026/data/raw/survey_2024.csv
-✅ /Users/gaoch/projects/d2rs-2026/scripts/data_cleaning.R
-✅ /Users/gaoch/projects/d2rs-2026/report/final_report.qmd
+```markdown
+✅ `/Users/gaoch/projects/d2rs-2026/data/raw/survey_2024.csv`
+✅ `/Users/gaoch/projects/d2rs-2026/scripts/data_cleaning.R`
+✅ `/Users/gaoch/projects/d2rs-2026/report/final_report.qmd`
 ```
 
 ---
 
-## 文件格式与扩展名
+## 文件格式与扩展名 {.smaller}
 
 **常见的数据文件格式：**
 
@@ -113,7 +112,9 @@ format:
 ## 文件命名规范
 
 ::: {.callout-warning}
-**【重要】起有意义的文件名**
+### 【重要】起有意义的文件名
+
+没有临时文件！
 :::
 
 **不好的命名：**
@@ -156,6 +157,12 @@ format:
 05_report/
 ```
 
+::: {.callout-tip}
+### 我是如何管理自己的文件的？
+
+[用自己的电脑演示]
+:::
+
 ---
 
 ## 文件权限（Linux/Mac）
@@ -197,9 +204,9 @@ ls -l
 
 ---
 
-## 推荐的项目结构
+## 推荐的项目结构 {.smaller}
 
-```
+```markdown
 my-project/
 ├── README.md              # 项目说明
 ├── LICENSE                # 许可证
@@ -224,7 +231,7 @@ my-project/
 
 ## README.md 模板
 
-`````markdown
+````markdown
 # 项目名称
 
 ## 项目简介
@@ -254,11 +261,11 @@ results/     - 输出结果
 ## 作者
 
 姓名（邮箱）
-`````
+````
 
 ---
 
-## 数据备份策略
+## 数据备份策略 {.smaller}
 
 ::: {.callout-important}
 **3-2-1备份原则**：
@@ -274,25 +281,25 @@ results/     - 输出结果
 |:----:|:-----|:-----|
 | 本地硬盘 | 工作目录 | 电脑 |
 | 移动硬盘/U盘 | 定期备份 | 手动复制 |
-| **云盘** | 自动同步 | 坚果云/iCloud |
+| **云盘** | 自动同步 | **坚果云** |
 | GitHub | 代码+文档 | Git |
 
 ---
 
 # Git 版本控制
 
-## 为什么需要版本控制？
+## 为什么需要版本控制？ {.smaller}
 
 **没有版本控制的困境：**
 
 ```
 project/
-├── report_final.docx
-├── report_final_v2.docx
-├── report_final_v2_修改.docx
-├── report_final_真的final.docx
-├── report_final_20240305.docx
-└── report_final_绝对不修改版.docx
+├── report_final.md
+├── report_final_v2.md
+├── report_final_v2_修改.md
+├── report_final_真的final.md
+├── report_final_20240305.md
+└── report_final_绝对不修改版.md
 ```
 
 **Git解决的问题：**
@@ -332,19 +339,20 @@ project/
 
 ## Git工作流程
 
-```
-工作区 (Working Directory)
-    ↓ git add
-暂存区 (Staging Area)
-    ↓ git commit
-本地仓库 (Local Repository)
-    ↓ git push
-远程仓库 (Remote Repository)
+::: {.columns}
+::: {.column width=30%}
+```{mermaid}
+flowchart TD
+    A[工作区<br>Working Directory] -->|git add| B[暂存区<br>Staging Area]
+    B -->|git commit| C[本地仓库<br>Local Repository]
+    C -->|git push| D[远程仓库<br>Remote Repository]
+    D -.->|git pull<br>or<br>git clone| A
 ```
 
----
 
-## 基础Git命令
+:::
+::: {.column width=70%}
+**基础Git命令**
 
 ```bash
 # 查看状态
@@ -363,6 +371,11 @@ git push origin main
 # 拉取最新更改
 git pull origin main
 ```
+:::
+:::
+<!-- end columns -->
+
+
 
 ---
 
@@ -408,25 +421,40 @@ ssh -T git@github.com
 
 ---
 
-## GitHub协作模型
+## GitHub 协作模型 {.smaller}
+
+::: {.columns}
+::: {.column}
+```{mermaid}
+flowchart TD
+    %% 1. 定义节点关系（仅在第一次出现时写标签）
+    U[上游仓库<br>Upstream] --> |"同步更新<br>git fetch upstream"| F[你的 Fork<br>Origin]
+    
+    %% 2. 定义其他节点
+    L[本地仓库 main<br>Local main]
+    B[本地 feature 分支<br>Local feature branch]
+
+    %% 3. 使用 ID 引用（不带括号）来描述流向
+    F -->|git clone <br> git pull| L
+    L -->|git checkout -b feature| B
+    B -->|git push origin feature| F
+    F -->|Pull Request<br>Review & Merge| U
+    B -.->|开发和迭代| B
 
 ```
-上游仓库 (Upstream)
-    ↑
-    │ Pull Request
-    │
-你的Fork (Origin)
-    ↑
-    │ push
-    │
-本地仓库 (Local)
-```
+:::
+::: {.column}
 
-**Fork工作流优势：**
+**Fork 工作流优势：**
 
 - 保护上游仓库安全
 - 自由实验不影响他人
-- 通过PR进行代码审核
+- 通过 PR 进行代码审核
+
+:::
+:::
+<!-- end columns -->
+
 
 ---
 
@@ -455,13 +483,13 @@ git push origin add-my-info
 
 ---
 
-## GitHub Review 机制
+## GitHub Review 机制 {.smaller}
 
 ::: {.callout-important}
-**Review是课程考核的重要组成部分！**
+**Review 是课程考核的重要组成部分！**
 :::
 
-**Review流程：**
+**Review 流程：**
 
 1. 收到 PR 通知（邮件/GitHub）
 2. 点击 "Files changed" 查看改动
@@ -473,9 +501,9 @@ git push origin add-my-info
 
 ---
 
-## 高质量Review示例
+## 高质量 Review 示例
 
-**好的Review评论：**
+**好的 Review 评论：**
 
 ```markdown
 ✅ **优点**：
@@ -502,8 +530,7 @@ git push origin add-my-info
 告诉 Git 哪些文件不应该被版本控制
 
 ```gitignore
-# 数据文件（保护隐私/减小体积）
-*.csv
+# 原始数据文件（保护隐私/减小体积）
 *.xlsx
 *.zip
 
@@ -514,13 +541,11 @@ Thumbs.db
 
 # 输出结果（可重新生成）
 results/
-figures/
 _book/
 
 # 敏感信息
 *.key
 .env
-config.json
 ```
 
 ---
@@ -602,14 +627,14 @@ config.json
 
 1. 你的数据目前存放在哪里？
 2. 如果电脑坏了，你能恢复多少数据？
-3. 制定一个3-2-1备份方案：
+3. 制定一个 3-2-1 备份方案：
    - 主工作目录：______
    - 本地备份：______（移动硬盘/U盘）
    - 云端备份：______（坚果云/iCloud/GitHub）
 
 ---
 
-## 作业2：提交PR详解
+## 作业2：提交PR详解 {.smaller}
 
 **步骤：**
 
@@ -624,7 +649,7 @@ config.json
 
 ---
 
-## 作业3：Review要求
+## 作业3：Review 要求
 
 **每位同学需要 Review 5 个 PR：**
 
@@ -633,9 +658,8 @@ config.json
 **Review要点：**
 
 - 文件命名是否正确（`学号.md`）
-- 内容是否完整
-- 格式是否规范
-- 是否有建设性意见
+- Markdown 格式是否正确
+- 内容是否使用了生物脑
 
 ---
 
@@ -653,12 +677,18 @@ config.json
 
 ## 答疑与总结
 
-**今日要点：**
+::: {.columns}
+::: {.column}
+
+**今日要点：数据的保存与传递**
 
 1. ✅ 使用全英文、有意义的路径和文件名
 2. ✅ 按项目组织文件，保持清晰结构
-3. ✅ Git 版本控制是协作的基础
-4. ✅ Fork + PR 是课程的主要协作方式
+3. ✅ Git 版本控制是协作的得力工具
+4. ✅ Fork + PR 是数据分析项目的主要协作方式
+
+:::
+::: {.column}
 
 **常见问题：**
 
@@ -666,11 +696,15 @@ config.json
 - Q: PR 冲突？ → 先同步上游仓库；修改时使用分枝
 - Q: 忘记添加文件？ → `git add` 后再 commit
 
+:::
+:::
+<!-- end columns -->
+
 ---
 
 ## 联系方式
 
-- **邮箱**：gaoch@mail.hzau.edu.cn
+- **邮箱**：<gaoch@mail.hzau.edu.cn>
 - **QQ群**：1090706962
 - **GitHub Issues**：课程相关问题欢迎提 Issue
 
@@ -681,5 +715,5 @@ config.json
 
 1. 规划文件管理（存储、备份）策略
 2. Fork 课程仓库并提交 PR
-3. 参与代码 Review
+3. 通过 Review 来互评作业
 :::

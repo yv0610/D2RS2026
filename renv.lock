@@ -11,6 +11,11 @@
   "Bioconductor": {
     "Version": "3.22"
   },
+  "Python": {
+    "Version": "3.12.11",
+    "Type": "virtualenv",
+    "Name": ".venv"
+  },
   "Packages": {
     "AlgDesign": {
       "Package": "AlgDesign",

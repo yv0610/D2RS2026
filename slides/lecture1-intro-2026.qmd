@@ -267,9 +267,9 @@ flowchart LR
 
 | 配置项 | 值 |
 |:-------|:---|
-| API域名 | `https://chatanywhere.tech/v1` |
+| API域名 | `https://api.chatanywhere.tech/v1` |
 | API路径 | `/chat/completions` |
-| 模型 | `gpt-5-nano` |
+| 模型 | `gpt-5-nano` 或其它可用 |
 | API KEY | [老师提供的密钥] |
 
 ---

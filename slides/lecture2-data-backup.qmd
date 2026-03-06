@@ -11,6 +11,7 @@ format:
       buttons: false
     preview-links: auto
     css: slide.css
+    center: true
     footer: '[课程仓库](https://github.com/D2RS-2026spring)'
   pdf:
     documentclass: ctexbook
@@ -35,6 +36,233 @@ format:
 
 ---
 
+# 数据分析的 Whole Game
+
+## 你为什么来学这门课？ {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**你想做的事：**
+
+- 📊 画出漂亮的图
+- 📈 做统计分析
+- 🤖 训练机器学习模型
+- 📝 发表论文、写报告
+:::
+::: {.column width="50%"}
+**现实往往是：**
+
+- 😰 数据格式混乱
+- 😱 多个表格需要合并
+- 😤 列名是中文+特殊字符
+- 🤯 80% 的时间在"整理数据"
+:::
+:::
+<!-- end columns -->
+
+::: {.callout-important}
+**数据整理是数据分析中最重要、最耗时的环节！**
+:::
+
+---
+
+## 数据分析的完整流程 {.smaller}
+
+```{mermaid}
+flowchart LR
+    A["📥 原始数据\nRaw Data"] -->|"读取\nreadr"| B["🔧 整理数据\nTidy Data"]
+    B -->|"变换\ndplyr"| C["🔍 探索分析\nEDA"]
+    B -->|"可视化\nggplot2"| D["📊 图表\nPlots"]
+    C --> E["📝 报告\nReport"]
+    D --> E
+
+    style A fill:#ffcccc
+    style B fill:#ccffcc
+    style C fill:#cce5ff
+    style D fill:#cce5ff
+    style E fill:#fff3cd
+```
+
+::: {.callout-note}
+**关键洞察**：所有分析和可视化工具（ggplot2、统计模型等）都期望输入 **Tidy Data**。
+
+只有先把原始数据整理好，后续工作才能事半功倍！
+:::
+
+---
+
+## 什么是原始数据？（现实中的数据）{.smaller}
+
+**你可能收到的"数据"长这样：**
+
+| 样品 | 处理A_重复1 | 处理A_重复2 | 处理B_重复1 | 处理B_重复2 |
+|:----:|:----------:|:----------:|:----------:|:----------:|
+| 基因1 | 12.3 | 11.8 | 45.2 | 43.7 |
+| 基因2 | 8.5 | 9.1 | 22.4 | 21.9 |
+| 基因3 | 35.7 | 34.2 | 18.6 | 19.3 |
+
+**原始数据的常见问题：**
+
+- ❌ 变量信息（处理、重复）都混在列名里
+- ❌ 宽格式（wide format）不利于分析
+- ❌ ggplot2 无法直接使用这种格式画分组图
+- ❌ `t.test()`、`lm()` 等函数需要特定格式
+
+---
+
+## 什么是 Tidy Data？ {.smaller}
+
+**Hadley Wickham (tidyverse 作者) 的三条原则：**
+
+::: {.columns}
+::: {.column width="45%"}
+1. 📌 **每列是一个变量**
+2. 📌 **每行是一个观测**
+3. 📌 **每个格子是一个值**
+:::
+::: {.column width="55%"}
+**整理后的 Tidy Data 长这样：**
+
+| 基因 | 处理 | 重复 | 表达量 |
+|:----:|:----:|:----:|:------:|
+| 基因1 | A | 1 | 12.3 |
+| 基因1 | A | 2 | 11.8 |
+| 基因1 | B | 1 | 45.2 |
+| 基因2 | A | 1 | 8.5 |
+| ... | ... | ... | ... |
+:::
+:::
+<!-- end columns -->
+
+::: {.callout-tip}
+从"宽格式"→"长格式"：使用 `tidyr::pivot_longer()` 一行代码搞定！
+:::
+
+---
+
+## 为什么必须先整理数据？ {.smaller}
+
+::: {.columns}
+::: {.column width=40%}
+**❌ 用原始宽格式画图（繁琐）：**
+
+```r
+# 每个组都要单独处理
+plot(gene1_A, gene1_B)
+# 要画6个基因 × N个处理 = 很多行代码
+# 完全无法自动分组、上色
+```
+
+**✅ 用 Tidy Data 画图（优雅）：**
+
+```r
+# 一行代码，自动分组上色
+ggplot(tidy_data, 
+       aes(x = 处理, y = 表达量, 
+           color = 处理)) +
+  geom_boxplot() +
+  facet_wrap(~基因)
+```
+:::
+::: {.column width=60%}
+**Tidy Data 的优势：**
+
+| 所需操作 | 有了 Tidy Data |
+|:-----|:-------------|
+| 分组均值 | `group_by() + summarise()` |
+| 分面图 | `facet_wrap()` |
+| 统计检验 | `t.test()` 直接用 |
+| 合并数据 | `left_join()` |
+| 筛选子集 | `filter()` |
+
+:::
+:::
+<!-- end columns -->
+
+---
+
+## R 数据处理工具链：tidyverse {.smaller}
+
+```{mermaid}
+flowchart LR
+    A["📂 文件\n.csv / .xlsx / .txt"] -->|"readr\nread_csv()"| B["📊 数据框\ndata.frame"]
+    B -->|"tidyr\npivot_longer()\npivot_wider()"| C["✅ Tidy Data"]
+    C -->|"dplyr\nfilter() select()\nmutate() group_by()"| D["🔍 分析就绪的数据"]
+    D -->|"ggplot2\naes() + geom_*()"| E["📈 可视化"]
+    D -->|"stats\nt.test() lm()"| F["📐 统计模型"]
+    E --> G["📝 Quarto 报告"]
+    F --> G
+```
+
+::: {.callout-note}
+**tidyverse** 是一套设计理念统一的 R 包集合，所有包都基于 Tidy Data 设计，无缝衔接。
+
+```r
+library(tidyverse)  # 一次加载所有核心包
+```
+:::
+
+---
+
+## Whole Game：从原始数据到图表 {.smaller}
+
+```r
+library(tidyverse)
+
+# 第1步：读取原始数据
+raw_data <- read_csv("data/gene_expression.csv")
+
+# 第2步：整理为 Tidy Data（宽格式 → 长格式）
+tidy_data <- raw_data |>
+  pivot_longer(
+    cols = -基因,           # 除"基因"列外，全部转换
+    names_to = c("处理", "重复"),
+    names_sep = "_重复",
+    values_to = "表达量"
+  )
+
+# 第3步：数据分析（计算各处理的均值和标准差）
+summary_data <- tidy_data |>
+  group_by(基因, 处理) |>
+  summarise(
+    均值 = mean(表达量),
+    标准差 = sd(表达量),
+    .groups = "drop"
+  )
+
+# 第4步：可视化
+ggplot(summary_data, aes(x = 处理, y = 均值, fill = 处理)) +
+  geom_col() +
+  geom_errorbar(aes(ymin = 均值 - 标准差, ymax = 均值 + 标准差), width = 0.2) +
+  facet_wrap(~基因, scales = "free_y") +
+  theme_minimal() +
+  labs(title = "各处理条件下的基因表达量")
+```
+
+---
+
+## Whole Game 的核心理念 {.smaller}
+
+::: {.callout-important}
+### 数据驱动的可重复性研究工作流
+
+**原始数据** → 🔧 **整理 (Tidy)** → 🔍 **分析 (Analyse)** → 📊 **可视化 (Visualise)** → 📝 **报告 (Report)**
+:::
+
+**三个关键原则：**
+
+1. **原始数据只读** —— 永远不要直接修改原始数据，用代码记录所有处理步骤
+2. **Tidy Data 先行** —— 所有分析都从整理好的数据出发，避免重复劳动
+3. **代码即文档** —— 数据处理过程完整记录在代码中，保证可重复性
+
+::: {.callout-tip}
+今天我们先学如何**管理和保存**这些数据和代码文件；
+
+后续课程会深入学习每个环节的具体方法。
+:::
+
+---
+
 # 数据、代码的文件管理
 
 ## 为什么文件管理很重要？
@@ -54,7 +282,7 @@ format:
 
 ---
 
-## 路径（Path）
+## 路径（Path） {.smaller}
 
 **绝对路径 vs 相对路径**
 
@@ -73,13 +301,17 @@ format:
 
 ---
 
-### 不好的路径示例
+##  {.center}
+
+### 不好的路径示例 
 
 ```markdown
 ❌ `/Users/小明/我的数据/2024年数据/final_v2(改).csv`
 ❌ `/Users/John/Desktop/New Folder (2)/data.txt`
 ❌ `C:\Users\用户\文档\实验数据\最终版\真的最终版\...`
 ```
+
+<br>
 
 ### 好的路径示例
 
@@ -111,11 +343,15 @@ format:
 
 ## 文件命名规范
 
-::: {.callout-warning}
-### 【重要】起有意义的文件名
+::: {.callout-important}
+### 起有意义的文件名
 
 没有临时文件！
 :::
+
+
+::: {.columns}
+::: {.column}
 
 **不好的命名：**
 
@@ -125,6 +361,8 @@ format:
 ❌ analysis_final_v2_REAL_final.R
 ❌ 1.jpg, 2.jpg, 3.jpg
 ```
+:::
+::: {.column}
 
 **好的命名：**
 
@@ -135,6 +373,10 @@ format:
 ✅ 03_statistical-analysis.R
 ✅ figure1_sampling-map.png
 ```
+:::
+:::
+<!-- end columns -->
+
 
 ---
 
@@ -165,7 +407,9 @@ format:
 
 ---
 
-## 文件权限（Linux/Mac）
+# 文件权限
+
+## 文件权限（Linux/Mac） {.smaller}
 
 ```bash
 # 查看文件权限
@@ -621,7 +865,7 @@ _book/
 
 ---
 
-## 作业1：存储与备份策略
+## 作业 1：存储与备份策略
 
 **思考并写下：**
 
@@ -634,7 +878,7 @@ _book/
 
 ---
 
-## 作业2：提交PR详解 {.smaller}
+## 作业 2：Git 协作流程 {.smaller}
 
 **步骤：**
 
@@ -642,14 +886,18 @@ _book/
 2. 克隆到本地：`git clone git@github.com:你的用户名/members.git`
 3. 创建分支：`git checkout -b add-student-id`
 4. 创建文件：`202430301XXXX.md`
-5. 填写模型比较结果
+5. 填写模型比较的数据、结果，以及刚刚写出的存储备份策略
 6. 提交：`git add . && git commit -m "添加学号文件"`
 7. 推送：`git push origin add-student-id`
 8. 在 GitHub 发起 PR
 
 ---
 
-## 作业3：Review 要求
+## 作业 3：Review 要求
+
+::: {.callout-warning}
+请等待邀请！
+:::
 
 **每位同学需要 Review 5 个 PR：**
 
@@ -665,7 +913,7 @@ _book/
 
 ## 下次课预告
 
-**第3次课：文学化编程与自然语言编程**
+**第 3 次课：文学化编程与自然语言编程**
 
 - Quarto 文档系统
 - Vibe Coding 理念
@@ -675,7 +923,11 @@ _book/
 
 ---
 
-## 答疑与总结
+## 总结与答疑 {.column}
+
+::: {.callout-caution}
+ASK ME ANYTHING...
+:::
 
 ::: {.columns}
 ::: {.column}

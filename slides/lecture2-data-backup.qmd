@@ -958,7 +958,7 @@ ASK ME ANYTHING...
 
 - **邮箱**：<gaoch@mail.hzau.edu.cn>
 - **QQ群**：1090706962
-- **GitHub Issues**：课程相关问题欢迎提 Issue
+- **GitHub Issues**：课程相关问题 [欢迎提 Issue](https://github.com/D2RS-2026spring/AskMeAnything/issues/new?template=ama.md&title=%5BAMA%5D)
 
 ::: {.callout-tip}
 ## 感谢聆听！

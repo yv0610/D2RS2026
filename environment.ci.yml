@@ -1,0 +1,13 @@
+name: data-driven-reproducible-study
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - jupyter
+  - ipykernel
+  - matplotlib
+  - numpy
+  - pandas
+  - pip:
+      - openai
